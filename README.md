@@ -7,7 +7,7 @@ License MIT
 
 JQuery Documentation:
 http://arshaw.com/fullcalendar/docs/
-Yii2 Extension by <philipp@frenzel.net>
+This is a fork of Yii2 Extension by <philipp@frenzel.net>
 
 A tiny sample can be found here:
 http://yii2fullcalendar.beeye.org
@@ -23,12 +23,12 @@ Package is although registered at packagist.org - so you can just add one line o
 
 add the following line to your composer.json require section:
 ```json
-  "philippfrenzel/yii2fullcalendar":"*",
+  "JavierLob/yii2fullcalendar":"3.6.7",
 ```
 
 or run:
 ```
-$ php composer.phar require philippfrenzel/yii2fullcalendar "*"
+$ php composer.phar require JavierLob/yii2fullcalendar "3.6.7"
 ```
 
 And ensure, that you have the following plugin installed global:
