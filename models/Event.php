@@ -26,10 +26,9 @@ class Event extends Model
 
   /**
    * The description text for an event
-   * 2017-10-23 removed and is replaced by none standard fields
    * @var string
    */
-   //public $description;
+   public $description;
 
   /**
    * Whether an event occurs at a specific time-of-day. This property affects whether an event's time is shown. Also, in the agenda views, determines if it is displayed in the "all-day" section.
@@ -100,32 +99,6 @@ class Event extends Model
   public $durationEditable;
 
   /**
-   * Overrides the master eventResourceEditable option for this single event.
-   * @var boolean
-   */
-  public $resourceEditable;
-
-  /**
-   * Allows alternate rendering of the event, like background events.
-   * Can be empty, "background", or "inverse-background"
-   * @var [type]
-   */
-  public $rendering;
-
-  /**
-   * Overrides the master eventOverlap option for this single event.
-   * If false, prevents this event from being dragged/resized over other events. Also prevents other events from being dragged/resized over this event.
-   * @var boolean
-   */
-  public $overlap;
-
-  /**
-   * Overrides the master eventConstraint option for this single event.
-   * @var [type]
-   */
-  public $constraint;
-
-  /**
    * A reference to the event source that this event came from.
    * @var [type]
    */
@@ -175,8 +148,8 @@ class Event extends Model
   {
     return [
       [['id', 'resourceId'], 'integer'],
-      ['title, allDay, start, end, url, className, rendering, constraint, source, color, backgroundColor, borderColor, textColor, nonstandard', 'safe'],
-      ['editable, startEditable, durationEditable, resourceEditable, overlap', 'boolean'],
+      ['title, allDay, start, end, url, className, source, color, backgroundColor, borderColor, textColor, nonstandard', 'safe'],
+      ['editable, startEditable, durationEditable', 'boolean'],
     ];
   }
 

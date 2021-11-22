@@ -2,7 +2,7 @@ yii2fullcalendar
 ================
 JQuery Fullcalendar Yii2 Extension
 JQuery from: http://arshaw.com/fullcalendar/
-Version 4.0.2
+Version 2.1.1
 License MIT
 
 JQuery Documentation:
@@ -23,12 +23,12 @@ Package is although registered at packagist.org - so you can just add one line o
 
 add the following line to your composer.json require section:
 ```json
-  "JavierLob/yii2fullcalendar":"3.6.7",
+  "javierlob/yii2fullcalendar":"*",
 ```
 
 or run:
 ```
-$ php composer.phar require JavierLob/yii2fullcalendar "3.6.7"
+$ php composer.phar require javierlob/yii2fullcalendar "*"
 ```
 
 And ensure, that you have the following plugin installed global:
