@@ -29,7 +29,7 @@
 	"require": {
 		"php": ">=7.4",
 		"yiisoft/yii2": "*",
-		"bower-asset/fullcalendar": "5.11.*"
+		"bower-asset/fullcalendar": "4.4.3"
 	},
 	"require-dev": {
 		"codeception/codeception": "*"
