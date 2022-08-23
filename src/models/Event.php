@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2fullcalendar\models;
+namespace hosannahighertech\calendar\models;
 
 use yii\base\Model;
 
@@ -28,7 +28,7 @@ class Event extends Model
    * The description text for an event
    * @var string
    */
-   public $description;
+  public $description;
 
   /**
    * Whether an event occurs at a specific time-of-day. This property affects whether an event's time is shown. Also, in the agenda views, determines if it is displayed in the "all-day" section.
@@ -66,7 +66,7 @@ class Event extends Model
    * Day of Week settings for repeating events. Enter the numerical days of the week ex. [1,4] would repeat on Monday and Thursday.
    * @var array
    */
-   public $dow;
+  public $dow;
 
   /**
    * A URL that will be visited when this event is clicked by the user. For more information on controlling this behavior, see the eventClick callback.
@@ -134,14 +134,14 @@ class Event extends Model
   public $resourceId;
 
   /**
-  * Sets an event's non-standard fields. FullCalendar will not modify or delete
-  * these fields. For example, developers often include a description field for
-  * use in callbacks such as eventRender.
-  *
-  * @since 2017.01.18
-  * @author @markebjones
-  * @see https://fullcalendar.io/docs/event_data/Event_Object/
-  */
+   * Sets an event's non-standard fields. FullCalendar will not modify or delete
+   * these fields. For example, developers often include a description field for
+   * use in callbacks such as eventRender.
+   *
+   * @since 2017.01.18
+   * @author @markebjones
+   * @see https://fullcalendar.io/docs/event_data/Event_Object/
+   */
   public $nonstandard;
 
   public function rules()
@@ -152,5 +152,4 @@ class Event extends Model
       ['editable, startEditable, durationEditable', 'boolean'],
     ];
   }
-
 }

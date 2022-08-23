@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2fullcalendar;
+namespace hosannahighertech\calendar;
 
 use Yii;
 use yii\web\AssetBundle;
@@ -14,7 +14,7 @@ use yii\web\AssetBundle;
 class SchedulerAsset extends AssetBundle
 {
     public $sourcePath = '@bower/fullcalendar-scheduler/dist';
-    
+
     /**
      * [$js description]
      * @var array
@@ -22,7 +22,7 @@ class SchedulerAsset extends AssetBundle
     public $js = [
         'scheduler.js',
     ];
-    
+
     public $css = [
         'scheduler.css'
     ];

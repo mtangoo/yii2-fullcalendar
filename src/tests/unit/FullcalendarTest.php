@@ -1,8 +1,8 @@
 <?php
 
-namespace yii2fullcalendar\tests\unit;
+namespace hosannahighertech\calendar\tests\unit;
 
-use \yii2fullcalendar\yii2fullcalendar;
+use \hosannahighertech\calendar\yii2fullcalendar;
 
 /**
  * This is MasonryTest unit test.
@@ -30,7 +30,7 @@ class FullcalendarTest extends \Codeception\TestCase\Test
      */
     protected function _before()
     {
-        $this->instance = new yii2fullcalendar();
+        $this->instance = new hosannahighertech\calendar();
     }
 
     /**
@@ -44,7 +44,5 @@ class FullcalendarTest extends \Codeception\TestCase\Test
     // tests
     public function testMe()
     {
-
     }
-
 }

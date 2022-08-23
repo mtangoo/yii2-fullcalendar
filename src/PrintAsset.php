@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2fullcalendar;
+namespace hosannahighertech\calendar;
 
 use yii\web\AssetBundle;
 
@@ -16,7 +16,7 @@ class PrintAsset extends AssetBundle
      * @var string
      */
     public $sourcePath = '@bower/fullcalendar/dist';
-    
+
     /**
      * [$css description]
      * @var array
@@ -30,7 +30,6 @@ class PrintAsset extends AssetBundle
      * @var [type]
      */
     public $cssOptions = [
-    	'media' => 'print'
+        'media' => 'print'
     ];
 }
-

@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2fullcalendar;
+namespace hosannahighertech\calendar;
 
 use yii\web\AssetBundle;
 
@@ -24,5 +24,4 @@ class MomentAsset extends AssetBundle
     public $js = [
         'moment.js'
     ];
-
 }

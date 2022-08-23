@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2fullcalendar;
+namespace hosannahighertech\calendar;
 
 use Yii;
 use yii\web\AssetBundle;
@@ -35,7 +35,7 @@ class CoreAsset extends AssetBundle
      * @var boolean
      */
     public $googleCalendar = false;
-    
+
     /**
      * [$css description]
      * @var array
@@ -49,18 +49,18 @@ class CoreAsset extends AssetBundle
      * @var array
      */
     public $js = [
-        'fullcalendar.js',        
+        'fullcalendar.js',
         'locale-all.js',
     ];
-    
+
     /**
      * [$depends description]
      * @var array
      */
     public $depends = [
         'yii\web\YiiAsset',
-        'yii2fullcalendar\MomentAsset',
-        'yii2fullcalendar\PrintAsset'
+        'hosannahighertech\calendar\MomentAsset',
+        'hosannahighertech\calendar\PrintAsset'
     ];
 
     /**
@@ -69,17 +69,14 @@ class CoreAsset extends AssetBundle
     public function registerAssetFiles($view)
     {
         $language = $this->language ? $this->language : Yii::$app->language;
-        if (strtoupper($language) != 'EN-US') 
-        {
+        if (strtoupper($language) != 'EN-US') {
             $this->js[] = "locale/{$language}.js";
         }
 
-        if($this->googleCalendar)
-        {
+        if ($this->googleCalendar) {
             $this->js[] = 'gcal.js';
         }
 
         parent::registerAssetFiles($view);
     }
-
 }

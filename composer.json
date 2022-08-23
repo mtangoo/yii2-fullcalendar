@@ -1,7 +1,11 @@
 {
-	"name": "javierlob/yii2fullcalendar",
+	"name": "mtangoo/yii2-fullcalendar",
 	"description": "Yii2 fullcalendar Widgets",
-	"keywords": ["yii2", "fullcalendar","widget"],
+	"keywords": [
+		"yii2",
+		"fullcalendar",
+		"widget"
+	],
 	"type": "yii2-extension",
 	"license": "MIT",
 	"authors": [
@@ -10,22 +14,35 @@
 			"email": "philipp@frenzel.net",
 			"homepage": "http://www.frenzel.net/",
 			"role": "Developer"
+		},
+		{
+			"name": "Stefano Mtangoo",
+			"email": "mwinjilisti@gmail.com",
+			"homepage": "https://www.hosannahighertech.co.tz/",
+			"role": "Developer"
 		}
 	],
 	"support": {
-		"source": "https://github.com/philippfrenzel/yii2fullcalendar"
+		"source": "https://github.com/mtangoo/yii2-fullcalendar"
 	},
 	"minimum-stability": "stable",
 	"require": {
-        "php": ">=7.4",
-		"yiisoft/yii2" : "*",
-		"yiisoft/yii2-jui" : "*",
-		"bower-asset/fullcalendar" : "^3.5.0@stable"
+		"php": ">=7.4",
+		"yiisoft/yii2": "*",
+		"bower-asset/fullcalendar": "5.11.*"
 	},
 	"require-dev": {
 		"codeception/codeception": "*"
 	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://asset-packagist.org"
+		}
+	],
 	"autoload": {
-		"psr-4": { "yii2fullcalendar\\": "" }
+		"psr-4": {
+			"hosannahighertech\\calendar\\": "src/"
+		}
 	}
 }

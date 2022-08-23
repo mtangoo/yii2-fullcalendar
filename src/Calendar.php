@@ -1,6 +1,6 @@
 <?php
 
- /**
+/**
  * This class is used to embed FullCalendar JQuery Plugin to my Yii2 Projects
  * @copyright Frenzel GmbH - www.frenzel.net
  * @link http://www.frenzel.net
@@ -8,7 +8,7 @@
  *
  */
 
-namespace yii2fullcalendar;
+namespace hosannahighertech\calendar;
 
 use Yii;
 use yii\web\View;
@@ -17,14 +17,14 @@ use yii\helpers\Json;
 use yii\web\JsExpression;
 use yii\base\Widget as elWidget;
 
-class yii2fullcalendar extends elWidget
+class Calendar extends elWidget
 {
 
     /**
-    * @var array options the HTML attributes (name-value pairs) for the field container tag.
-    * The values will be HTML-encoded using [[Html::encode()]].
-    * If a value is null, the corresponding attribute will not be rendered.
-    */
+     * @var array options the HTML attributes (name-value pairs) for the field container tag.
+     * The values will be HTML-encoded using [[Html::encode()]].
+     * If a value is null, the corresponding attribute will not be rendered.
+     */
     public $options = [
         'class' => 'fullcalendar'
     ];
@@ -48,10 +48,10 @@ class yii2fullcalendar extends elWidget
     public $defaultView = 'month';
 
     /**
-    * Holds an array of Event Objects
-    * @var array events of yii2fullcalendar\models\Event
-    * @todo add the event class and write docs
-    **/
+     * Holds an array of Event Objects
+     * @var array events of hosannahighertech\calendar\models\Event
+     * @todo add the event class and write docs
+     **/
     public $events = [];
 
     /**
@@ -59,9 +59,9 @@ class yii2fullcalendar extends elWidget
      * @var array header format
      */
     public $header = [
-        'center'=>'title',
-        'left'=>'prev,next today',
-        'right'=>'month,agendaWeek'
+        'center' => 'title',
+        'left' => 'prev,next today',
+        'right' => 'month,agendaWeek'
     ];
 
     /**
@@ -72,7 +72,7 @@ class yii2fullcalendar extends elWidget
 
     /**
      * wheather the events will be "sticky" on pagination or not. Uncomment if you are loading events
-	 * separately from the initial options.
+     * separately from the initial options.
      * @var boolean
      */
     //public $stickyEvents = true;
@@ -113,14 +113,14 @@ class yii2fullcalendar extends elWidget
      */
     public $eventAfterAllRender = "";
 
-     /**
+    /**
      * The javascript function to us as en eventDrop callback
      * @var string the javascript code that implements the eventDrop function
      */
 
     public $eventDrop = "";
-	
-     /**
+
+    /**
      * The javascript function to us as en eventResize callback
      * @var string the javascript code that implements the eventResize function
      */
@@ -169,16 +169,16 @@ class yii2fullcalendar extends elWidget
         }
 
         echo Html::beginTag('div', $this->options) . "\n";
-            echo Html::beginTag('div',['class'=>'fc-loading','style' => 'display:none;']);
-                echo Html::encode($this->loading);
-            echo Html::endTag('div')."\n";
-        echo Html::endTag('div')."\n";
+        echo Html::beginTag('div', ['class' => 'fc-loading', 'style' => 'display:none;']);
+        echo Html::encode($this->loading);
+        echo Html::endTag('div') . "\n";
+        echo Html::endTag('div') . "\n";
         $this->registerPlugin();
     }
 
     /**
-    * Registers the FullCalendar javascript assets and builds the requiered js  for the widget and the related events
-    */
+     * Registers the FullCalendar javascript assets and builds the requiered js  for the widget and the related events
+     */
     protected function registerPlugin()
     {
         $id = $this->options['id'];
@@ -188,63 +188,58 @@ class yii2fullcalendar extends elWidget
         $assets = CoreAsset::register($view);
 
         //by default we load the jui theme, but if you like you can set the theme to false and nothing gets loaded....
-        if($this->theme == true)
-        {
+        if ($this->theme == true) {
             ThemeAsset::register($view);
         }
 
-        if (isset($this->options['lang']))
-        {
+        if (isset($this->options['lang'])) {
             $assets->language = $this->options['lang'];
         }
 
-        if ($this->googleCalendar)
-        {
+        if ($this->googleCalendar) {
             $assets->googleCalendar = $this->googleCalendar;
         }
 
         $js = array();
 
-        if($this->ajaxEvents != NULL){
+        if ($this->ajaxEvents != NULL) {
             $this->clientOptions['events'] = $this->ajaxEvents;
         }
 
-        if(is_array($this->header) && isset($this->clientOptions['header']))
-        {
-            $this->clientOptions['header'] = array_merge($this->header,$this->clientOptions['header']);
+        if (is_array($this->header) && isset($this->clientOptions['header'])) {
+            $this->clientOptions['header'] = array_merge($this->header, $this->clientOptions['header']);
         } else {
             $this->clientOptions['header'] = $this->header;
         }
 
-	if(isset($this->defaultView) && !isset($this->clientOptions['defaultView']))
-        {
+        if (isset($this->defaultView) && !isset($this->clientOptions['defaultView'])) {
             $this->clientOptions['defaultView'] = $this->defaultView;
         }
 
-	// clear existing calendar display before rendering new fullcalendar instance
-	// this step is important when using the fullcalendar widget with pjax
-	$js[] = "var loading_container = jQuery('#$id .fc-loading');"; // take backup of loading container
-	$js[] = "jQuery('#$id').empty().append(loading_container);"; // remove/empty the calendar container and append loading container bakup
+        // clear existing calendar display before rendering new fullcalendar instance
+        // this step is important when using the fullcalendar widget with pjax
+        $js[] = "var loading_container = jQuery('#$id .fc-loading');"; // take backup of loading container
+        $js[] = "jQuery('#$id').empty().append(loading_container);"; // remove/empty the calendar container and append loading container bakup
 
         $cleanOptions = $this->getClientOptions();
         $js[] = "jQuery('#$id').fullCalendar($cleanOptions);";
 
         /**
-	* Loads events separately from the calendar creation. Uncomment if you need this functionality.
-	*
-	* lets check if we have an event for the calendar...
-        * if(count($this->events)>0)
-        * {
-        *    foreach($this->events AS $event)
-        *    {
-        *        $jsonEvent = Json::encode($event);
-        *        $isSticky = $this->stickyEvents;
-        *        $js[] = "jQuery('#$id').fullCalendar('renderEvent',$jsonEvent,$isSticky);";
-        *    }
-        * }
-	*/
+         * Loads events separately from the calendar creation. Uncomment if you need this functionality.
+         *
+         * lets check if we have an event for the calendar...
+         * if(count($this->events)>0)
+         * {
+         *    foreach($this->events AS $event)
+         *    {
+         *        $jsonEvent = Json::encode($event);
+         *        $isSticky = $this->stickyEvents;
+         *        $js[] = "jQuery('#$id').fullCalendar('renderEvent',$jsonEvent,$isSticky);";
+         *    }
+         * }
+         */
 
-        $view->registerJs(implode("\n", $js),View::POS_READY);
+        $view->registerJs(implode("\n", $js), View::POS_READY);
     }
 
     /**
@@ -256,37 +251,35 @@ class yii2fullcalendar extends elWidget
         $options['loading'] = new JsExpression("function(isLoading, view ) {
                 jQuery('#{$id}').find('.fc-loading').toggle(isLoading);
         }");
-        if ($this->eventRender){
+        if ($this->eventRender) {
             $options['eventRender'] = new JsExpression($this->eventRender);
         }
-        if ($this->eventAfterRender){
+        if ($this->eventAfterRender) {
             $options['eventAfterRender'] = new JsExpression($this->eventAfterRender);
         }
-        if ($this->eventAfterAllRender){
+        if ($this->eventAfterAllRender) {
             $options['eventAfterAllRender'] = new JsExpression($this->eventAfterAllRender);
         }
 
-        if ($this->eventDrop){
+        if ($this->eventDrop) {
             $options['eventDrop'] = new JsExpression($this->eventDrop);
         }
-	    
-        if ($this->eventResize){
-            $options['eventResize'] = new JsExpression($this->eventResize);
-        }	    
 
-        if ($this->select){
+        if ($this->eventResize) {
+            $options['eventResize'] = new JsExpression($this->eventResize);
+        }
+
+        if ($this->select) {
             $options['select'] = new JsExpression($this->select);
         }
-        if ($this->eventClick){
+        if ($this->eventClick) {
             $options['eventClick'] = new JsExpression($this->eventClick);
         }
-		//checks for events and loads them into the options. Comment out if loading separately.
-        if (count((Array) $this->events) > 0)
-	{
+        //checks for events and loads them into the options. Comment out if loading separately.
+        if (count((array) $this->events) > 0) {
             $options['events'] = $this->events;
-	}
+        }
         $options = array_merge($options, $this->clientOptions);
         return Json::encode($options);
     }
-
 }
