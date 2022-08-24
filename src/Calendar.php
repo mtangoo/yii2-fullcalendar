@@ -187,11 +187,6 @@ class Calendar extends elWidget
         /** @var \yii\web\AssetBundle $assetClass */
         $assets = CoreAsset::register($view);
 
-        //by default we load the jui theme, but if you like you can set the theme to false and nothing gets loaded....
-        if ($this->theme == true) {
-            ThemeAsset::register($view);
-        }
-
         if (isset($this->options['lang'])) {
             $assets->language = $this->options['lang'];
         }
